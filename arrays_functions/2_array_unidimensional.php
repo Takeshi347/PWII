@@ -7,7 +7,7 @@
 
     $funcionarios = [
         'pessoa1' => [
-            'nome' => 'Hipaminondas',
+            'nome' => 'Hepaminondas',
             'sobrenome' => 'Silva',
             'idade' => 20
         ],
