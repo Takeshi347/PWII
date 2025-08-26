@@ -1,3 +1,6 @@
+
+<?php include 'conexao.php'; ?>
+
 <!doctype html>
 <html lang="pt-br">
   <head>
@@ -8,3 +11,4 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+    

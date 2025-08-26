@@ -1,6 +1,6 @@
 <?php
 
-    class Editora{
+    class Editora {
         private $id;
         private $nome;
         private $site;
@@ -12,15 +12,38 @@
             $this->email = $email;
         }
 
-        public function inserir(){ }
+        public function inserir($nome, $email, $site){
+                $stmt = $pdo->prepare("INSERT INTO editora (nome, email, site) VALUES (:nome, :email, :site)");
+                $stmt->bindParam(':nome', $nome);
+                $stmt->bindParam(':email', $email);
+                $stmt->bindParam(':site', $site);
+                $stmt->execute();
+        }
 
-        public function buscar($id){ }
+        public function buscar($id) {
+            $stmt = $pdo->query("SELECT * FROM editora WHERE id = $id");
+	        $editora = $stmt->fetchAll();
+         }
 
-        public function buscarTodos(){ }
+        public function buscarTodos() {
+            $stmt = $pdo->query("SELECT * FROM editora");
+	        $editora = $stmt->fetchAll();
+        }
 
-        public function atualizar($id){ }
+        public function atualizar($id, $nota, $site, $email) { 
+            $stmt = $pdo->prepare("UPDATE usuario SET nome = :nome, site = :site, email = :email WHERE id = :id");
+            $stmt->bindParam(':nome', $nome);
+            $stmt->bindParam(':site', $site);
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':id', id);
+            $stmt->execute();
+        }}
 
-        public function deletar(){ }
+        public function deletar($id) { 
+            $stmt = $pdo->prepare('DELETE FROM editora WHERE id = :id');
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+        }
     }
 
 ?>

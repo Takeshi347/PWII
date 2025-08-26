@@ -1,6 +1,6 @@
 <?php
 
-    class Categoria{
+    class Categoria {
         private $id;
         private $nome;
 
@@ -8,15 +8,33 @@
             $this->nome = $nome;
         }
 
-        public function inserir(){ }
+        public function inserir($nome){ 
+                $stmt = $pdo->prepare("INSERT INTO categoria (nome) VALUES (:nome)");
+                $stmt->bindParam(':nome', $nome);
+        }
 
-        public function buscar($id){ }
+        public function buscar($id) { 
+            $stmt = $pdo->query("SELECT * FROM categoria WHERE id = $id");
+	        $categoria = $stmt->fetchAll();
+        }
 
-        public function buscarTodos(){ }
+        public function buscarTodos() { 
+            $stmt = $pdo->query("SELECT * FROM categoria");
+	        $categoria = $stmt->fetchAll();
+        }
 
-        public function atualizar($id){ }
+        public function atualizar($id, $nome) { 
+            $stmt = $pdo->prepare("UPDATE categoria SET nome = :nome WHERE id = :id");
+            $stmt->bindParam(':nome', $nome);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+        }
 
-        public function deletar(){ }
+        public function deletar($id) { 
+            $stmt = $pdo->prepare('DELETE FROM categorai WHERE id = :id');
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+        }
     }
 
 ?>
